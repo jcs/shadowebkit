@@ -2,16 +2,17 @@
 #include <WebKit/WebFrame.h>
 #include <WebKit/WebView.h>
 
-@interface WKWindow : NSObject
+@interface WKWindow : NSWindow
 {
 	NSWindow *window;
 	NSScreen *screen;
 	NSRect screen_frame;
 	NSTextField *url;
 	WebView *browser;
+	WebFrame *wframe;
 }
 
 - (void)setPosition: (NSArray *)aCoords;
-- (void)focus;
+- (void)loadURL: (NSString *)url;
 
 @end

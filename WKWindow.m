@@ -11,31 +11,35 @@
 	screen = [NSScreen mainScreen];
 	screen_frame = [screen visibleFrame];
 
-	NSRect coords = NSMakeRect(0, 0, 200, 200);
-	window  = [[[NSWindow alloc] initWithContentRect:coords
+	NSRect coords = NSMakeRect(0, 0, 300, 300);
+	window  = [[[WKWindow alloc] initWithContentRect:coords
 				styleMask:NSBorderlessWindowMask
 				backing:NSBackingStoreBuffered
 				defer:NO
 				screen:screen] autorelease];
-	[window setBackgroundColor:[NSColor blueColor]];
+	[window setBackgroundColor:[NSColor greenColor]];
+	[window setAcceptsMouseMovedEvents:YES];
 
-	NSRect bframe = NSMakeRect(0, 0, 200, 200);
+	NSRect bframe = NSMakeRect(0, 0, 300, 300);
 	browser = [[WebView alloc] initWithFrame:bframe
 				frameName:nil
 				groupName:nil];
 
 	[window.contentView addSubview:browser];
 
-	url = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 170, 200, 30)];
+	url = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 270, 300, 30)];
 	[window.contentView addSubview:url];
 
-	WebFrame *wframe = [browser mainFrame];
-	[wframe loadRequest:[NSURLRequest requestWithURL:[NSURL
-		URLWithString:@"https://www.duckduckgo.com/"]]];
+	wframe = [browser mainFrame];
 
 	[window makeKeyAndOrderFront:window];
 
 	return self;
+}
+
+- (void)loadURL: (NSString *)url
+{
+	[wframe loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
 }
 
 - (void)setPosition: (NSArray *)aCoords
@@ -62,13 +66,17 @@
 	/* browser's coordinates are relative to the window */
 	[browser setFrame:NSMakeRect(0, 0, width, height - 30)];
 
-	[self focus];
+	[window makeKeyAndOrderFront:window];
 }
 
-- (void)focus
-{
-	[window makeKeyAndOrderFront:window];
-	[window setOrderedIndex:0];
+/* these are needed because setting styleMask to NSBorderlessWindowMask turns
+ * them off */
+- (BOOL)canBecomeKeyWindow {
+	return YES;
+}
+
+- (BOOL)canBecomeMainWindow {
+	return YES;
 }
 
 @end
