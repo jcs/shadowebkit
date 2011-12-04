@@ -11,6 +11,6 @@
 
 - (void)updateWKWindowPosition;
 - (void)mainLoopWithWKWindow: (id)wkwobj;
-- (void)sendKeyFromXEvent:(XKeyEvent)e;
+- (void)sendKeyFromXEvent:(XEvent)e;
 
 @end
