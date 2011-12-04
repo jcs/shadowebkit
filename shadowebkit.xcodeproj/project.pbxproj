@@ -1,0 +1,258 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		01126E29147D66D700C654C9 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01126E28147D66D700C654C9 /* CoreFoundation.framework */; };
+		01126E3F147D670500C654C9 /* WKWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 01126E39147D670500C654C9 /* WKWindow.m */; };
+		01126E40147D670500C654C9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 01126E3A147D670500C654C9 /* main.m */; };
+		01126E43147D673500C654C9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01126E42147D673500C654C9 /* Cocoa.framework */; };
+		01126E48147D6CD500C654C9 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01126E47147D6CD500C654C9 /* WebKit.framework */; };
+		01F07C9E1484730800B515E7 /* X11Window.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F07C9D1484730800B515E7 /* X11Window.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		01126E22147D66D700C654C9 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		01126E24147D66D700C654C9 /* shadowebkit */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = shadowebkit; sourceTree = BUILT_PRODUCTS_DIR; };
+		01126E28147D66D700C654C9 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		01126E38147D670500C654C9 /* WKWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKWindow.h; sourceTree = "<group>"; };
+		01126E39147D670500C654C9 /* WKWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKWindow.m; sourceTree = "<group>"; };
+		01126E3A147D670500C654C9 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		01126E42147D673500C654C9 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		01126E47147D6CD500C654C9 /* WebKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = WebKit.framework; path = ../../../System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		01F07C9C1484730800B515E7 /* X11Window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = X11Window.h; sourceTree = "<group>"; };
+		01F07C9D1484730800B515E7 /* X11Window.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = X11Window.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		01126E21147D66D700C654C9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				01126E29147D66D700C654C9 /* CoreFoundation.framework in Frameworks */,
+				01126E43147D673500C654C9 /* Cocoa.framework in Frameworks */,
+				01126E48147D6CD500C654C9 /* WebKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		01126E19147D66D700C654C9 = {
+			isa = PBXGroup;
+			children = (
+				01F07C9C1484730800B515E7 /* X11Window.h */,
+				01F07C9D1484730800B515E7 /* X11Window.m */,
+				01126E38147D670500C654C9 /* WKWindow.h */,
+				01126E39147D670500C654C9 /* WKWindow.m */,
+				01126E3A147D670500C654C9 /* main.m */,
+				01126E27147D66D700C654C9 /* Frameworks */,
+				01126E25147D66D700C654C9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		01126E25147D66D700C654C9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				01126E24147D66D700C654C9 /* shadowebkit */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		01126E27147D66D700C654C9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				01126E42147D673500C654C9 /* Cocoa.framework */,
+				01126E28147D66D700C654C9 /* CoreFoundation.framework */,
+				01126E47147D6CD500C654C9 /* WebKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		01126E23147D66D700C654C9 /* shadowebkit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 01126E31147D66D700C654C9 /* Build configuration list for PBXNativeTarget "shadowebkit" */;
+			buildPhases = (
+				01126E20147D66D700C654C9 /* Sources */,
+				01126E21147D66D700C654C9 /* Frameworks */,
+				01126E22147D66D700C654C9 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = shadowebkit;
+			productName = shadowebkit;
+			productReference = 01126E24147D66D700C654C9 /* shadowebkit */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		01126E1B147D66D700C654C9 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 01126E1E147D66D700C654C9 /* Build configuration list for PBXProject "shadowebkit" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 01126E19147D66D700C654C9;
+			productRefGroup = 01126E25147D66D700C654C9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				01126E23147D66D700C654C9 /* shadowebkit */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		01126E20147D66D700C654C9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				01126E3F147D670500C654C9 /* WKWindow.m in Sources */,
+				01126E40147D670500C654C9 /* main.m in Sources */,
+				01F07C9E1484730800B515E7 /* X11Window.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		01126E2F147D66D700C654C9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		01126E30147D66D700C654C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		01126E32147D66D700C654C9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_VERSION = "";
+				HEADER_SEARCH_PATHS = /usr/X11R6/include;
+				LIBRARY_SEARCH_PATHS = /usr/X11R6/lib;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-lXaw",
+					"-lXext",
+					"-lXmu",
+					"-lXt",
+					"-lX11",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		01126E33147D66D700C654C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_VERSION = "";
+				HEADER_SEARCH_PATHS = /usr/X11R6/include;
+				LIBRARY_SEARCH_PATHS = /usr/X11R6/lib;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-lXaw",
+					"-lXext",
+					"-lXmu",
+					"-lXt",
+					"-lX11",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		01126E1E147D66D700C654C9 /* Build configuration list for PBXProject "shadowebkit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				01126E2F147D66D700C654C9 /* Debug */,
+				01126E30147D66D700C654C9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		01126E31147D66D700C654C9 /* Build configuration list for PBXNativeTarget "shadowebkit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				01126E32147D66D700C654C9 /* Debug */,
+				01126E33147D66D700C654C9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 01126E1B147D66D700C654C9 /* Project object */;
+}
