@@ -28,14 +28,17 @@ int main(int argc, char* argv[])
 	argc -= optind;
 	argv += optind;
 
+	/* bring up the X11 window */
+	X11Window *X = [X11Window alloc];
+	[X init];
+
 	/* handle webkit window in the main thread (webkit won't allow use in
 	 * another thread anyway) */
 	WKWindow *WKW = [WKWindow alloc];
 	[WKW init];
+	[WKW setShadow:X];
 
-	/* bring up the X11 window in its own thread */
-	X11Window *X = [X11Window alloc];
-	[X init];
+	/* let X do its event loop in its own thread */
 	[X performSelectorInBackground:@selector(mainLoopWithWKWindow:)
 			withObject:WKW];
 

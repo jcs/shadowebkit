@@ -17,9 +17,6 @@ extern int debug;
 
 - (id)init
 {
-	XTextProperty win_name_prop;
-	char *win_name = "shadowebkit";
-
 	self = [super init];
 
 	display = XOpenDisplay(NULL);
@@ -34,10 +31,7 @@ extern int debug;
 		BlackPixel(display, screen)
 	);
 
-	if (XStringListToTextProperty(&win_name, 1, &win_name_prop) == 0)
-		errx(1, "XStringListToTextProperty");
-
-	XSetWMName(display, window, &win_name_prop);
+	[self setWindowTitle:@"shadowebkit"];
 
 	XMapWindow(display, window);
 	XSelectInput(display, window, KeyPressMask | KeyReleaseMask |
@@ -68,6 +62,17 @@ extern int debug;
 	}
 
 	[pool release];
+}
+
+- (void)setWindowTitle:(NSString *)title
+{
+	XTextProperty winNameProp;
+	const char *winName = [title UTF8String];
+
+	if (XStringListToTextProperty(&winName, 1, &winNameProp) == 0)
+		errx(1, "XStringListToTextProperty");
+
+	XSetWMName(display, window, &winNameProp);
 }
 
 - (void)updateWKWindowPosition

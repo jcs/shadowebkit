@@ -11,6 +11,7 @@
 
 - (void)updateWKWindowPosition;
 - (void)mainLoopWithWKWindow: (id)wkwobj;
+- (void)setWindowTitle:(NSString *)title;
 - (void)sendKeyFromXEvent:(XEvent)e;
 
 @end
