@@ -1,11 +1,18 @@
 ## shadowebkit
-by joshua stein <jcs@jcs.org>
+by joshua stein
+http://jcs.org/
 
 
 ### about
 this is an experiment in making a simple cocoa webkit-based browser that behaves like a normal X11 window and can be managed by a tiling X11 window manager under OS X.
 
 while it is possible to build webkit's gtk port on OS X and use existing minimalistic browsers like vimprobable or xxxterm, webkit-gtk's dependencies are quite numerous and font issues may cause rendering problems.  shadowebkit uses the high-performance cocoa-based webkit framework already included on OS X.
+
+
+### demo
+this is ratpoison under X11.app, with shadowebkit running in the upper right frame.
+
+![http://i.imgur.com/cGihpl.png](http://i.imgur.com/cGihp.png)
 
 
 ### building
@@ -38,8 +45,3 @@ the browser is currently just a basic shell; a webkit frame and a url bar that a
 the cocoa interface should be expanded to include small stop/reload/back buttons, a status bar, and a progress indicator.
 
 keyboard shortcuts should be added to focus the url bar, search, etc.
-
-### screenshot
-this is ratpoison under X11.app, with shadowebkit running in the upper right frame.
-
-[http://i.imgur.com/cGihpl.png](http://i.imgur.com/cGihp.png)
