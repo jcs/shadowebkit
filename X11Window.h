@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-#include <X11/Xlib.h>
+#import <X11/Xlib.h>
 
 @interface X11Window : NSObject
 {

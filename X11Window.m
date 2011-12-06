@@ -1,9 +1,9 @@
-#include <X11/Xlib.h>
-#include <X11/Xutil.h>
+#import <X11/Xlib.h>
+#import <X11/Xutil.h>
 
-#include <err.h>
-#include <stdlib.h>
-#include <stdio.h>
+#import <err.h>
+#import <stdlib.h>
+#import <stdio.h>
 
 /* sorry for this */
 #import <Carbon/../Frameworks/HIToolbox.framework/Headers/Events.h>

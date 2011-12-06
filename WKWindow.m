@@ -2,7 +2,7 @@
 #import "X11Window.h"
 #import "NSString+HTML.h"
 
-#include <Cocoa/Cocoa.h>
+#import <Cocoa/Cocoa.h>
 
 @implementation WKWindow
 
