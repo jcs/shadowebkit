@@ -148,10 +148,9 @@ extern int debug;
 			strlcpy(str, ksname, sizeof(str));
 			strlcpy(strNoMod, ksname, sizeof(strNoMod));
 		}
-		else if (strlen(ksname) > 1)
+		else if (strlen(ksname) > 1 && debug)
 			/* probably a named key */
-			fprintf(stderr, "should probably translate \"%s\"\n",
-				ksname);
+			printf("should probably translate \"%s\"\n", ksname);
 
 		/* otherwise, assume it's just an ascii letter or number we
 		 * can pass through as 'characters' param and a 0 keyCode */
