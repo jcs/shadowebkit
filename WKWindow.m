@@ -21,27 +21,32 @@
 	[window setBackgroundColor:[NSColor blackColor]];
 	[window setAcceptsMouseMovedEvents:YES];
 
+	currentURL = [[NSURL alloc] init];
+
 	NSRect bframe = NSMakeRect(0, 0, 300, 300);
 	browser = [[WebView alloc] initWithFrame:bframe
 				frameName:nil
 				groupName:nil];
-
-	/* setup callbacks to update the url and title */
-	[[NSNotificationCenter defaultCenter] addObserver:self
-					selector:@selector(updateProgress)
-					name:WebViewProgressStartedNotification
-					object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self
-					selector:@selector(updateProgress)
-					name:WebViewProgressFinishedNotification
-					object:nil];
-
+	[browser setGroupName:@"shadowebkit"];
+	[browser setUIDelegate:self];
+	[browser setResourceLoadDelegate:self];
+	[browser setFrameLoadDelegate:self];
 	[window.contentView addSubview:browser];
 
 	urlField = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 0, 0, 0)];
 	[urlField setTarget:self];
 	[urlField setAction:@selector(loadURLFromTextField)];
 	[window.contentView addSubview:urlField];
+
+	statusBar = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 0, 0, 0)];
+	[statusBar setTarget:self];
+	[statusBar setEditable:false];
+	[statusBar setSelectable:false];
+	[statusBar setBordered:false];
+	[statusBar setTextColor:[NSColor lightGrayColor]];
+	[statusBar setBackgroundColor:[NSColor blackColor]];
+	[self setStatus:@""];
+	[window.contentView addSubview:statusBar];
 
 	wframe = [browser mainFrame];
 
@@ -56,7 +61,7 @@
 	[self loadURL:[urlField stringValue]];
 }
 
-- (void)loadURL: (NSString *)url
+- (void)loadURL:(NSString *)url
 {
 	NSURL *u = [NSURL URLWithString:url];
 
@@ -67,14 +72,7 @@
 	[wframe loadRequest:[NSURLRequest requestWithURL:u]];
 }
 
-/* called while the page is loading, and then again when it finishes */
-- (void)updateProgress
-{
-	[urlField setStringValue:[browser mainFrameURL]];
-	[shadow setWindowTitle:[browser mainFrameTitle]];
-}
-
-- (void)setPosition: (NSArray *)aCoords
+- (void)setPosition:(NSArray *)aCoords
 {
 	int x = [[aCoords objectAtIndex:0] intValue];
 	int y = [[aCoords objectAtIndex:1] intValue];
@@ -96,7 +94,9 @@
 	[urlField setFrame:NSMakeRect(0, height - 23, width, 23)];
 
 	/* browser's coordinates are relative to the window */
-	[browser setFrame:NSMakeRect(0, 0, width, height - 24)];
+	[browser setFrame:NSMakeRect(0, 17, width, height - 17 - 24)];
+
+	[statusBar setFrame:NSMakeRect(0, 0, width, 17)];
 
 	[window makeKeyAndOrderFront:window];
 }
@@ -105,6 +105,27 @@
 {
 	[shadow autorelease];
 	shadow = [input retain];
+}
+
+- (void)setStatus:(NSString *)text
+{
+	[statusBar setStringValue:text];
+}
+
+- (void)setStatusToResourceCounts
+{
+	if (resourceCompletedCount + resourceFailedCount >= resourceCount)
+		[self setStatus:@""];
+	else
+		[self setStatus:[NSString
+			stringWithFormat:@"Loading \"%@\", completed %d of %d item%s",
+			[currentURL absoluteString], resourceCompletedCount,
+			resourceCount, (resourceCount == 1 ? "" : "s")]];
+}
+
+- (void)setTitle:(NSString *)text
+{
+	[shadow setWindowTitle:text];
 }
 
 /* these are needed because setting styleMask to NSBorderlessWindowMask turns
@@ -118,5 +139,71 @@
 {
 	return YES;
 }
+
+
+/* WebFrameLoadDelegate glue */
+
+- (void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame
+{
+	if (frame != [sender mainFrame])
+		return;
+
+	[self setStatus:@""];
+}
+
+- (void)webView:(WebView *)sender didReceiveTitle:(NSString *)title forFrame:(WebFrame *)frame
+{
+	if (frame != [sender mainFrame])
+		return;
+
+	[self setTitle:title];
+}
+
+- (void)webView:(WebView *)sender didStartProvisionalLoadForFrame:(WebFrame *)frame
+{
+	if (frame != [sender mainFrame])
+		return;
+
+	currentURL = [[NSURL URLWithString:[[[[frame provisionalDataSource]
+		request] URL] absoluteString]] retain];
+
+	resourceCount = 0;    
+	resourceCompletedCount = 0;
+	resourceFailedCount = 0;
+
+	[urlField setStringValue:[currentURL absoluteString]];
+	[self setStatus:[NSString stringWithFormat:@"Loading \"%@\"...",
+		[currentURL absoluteString]]];
+}
+
+
+/* WebResourceLoadDelegate glue */
+
+- (id)webView:(WebView *)sender identifierForInitialRequest:(NSURLRequest *)request fromDataSource:(WebDataSource *)dataSource
+{
+	return [NSNumber numberWithInt:resourceCount++];
+}
+
+- (NSURLRequest *)webView:(WebView *)sender resource:(id)identifier willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)redirectResponsefromDataSource:(WebDataSource *)dataSource
+{
+	/* TODO: implement an ad blocker here? */
+	[self setStatusToResourceCounts];
+	return request;
+}
+
+- (void)webView:(WebView *)sender resource:(id)identifier didFailLoadingWithError:(NSError *)error fromDataSource:(WebDataSource *)dataSource
+{
+	resourceFailedCount++;
+	[self setStatusToResourceCounts];
+}
+
+- (void)webView:(WebView *)sender resource:(id)identifier didFinishLoadingFromDataSource:(WebDataSource *)dataSource
+{
+	resourceCompletedCount++;
+	[self setStatusToResourceCounts];
+}
+
+/* WebUIDelegate glue */
+
 
 @end

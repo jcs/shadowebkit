@@ -12,14 +12,23 @@
 	NSScreen *screen;
 	NSRect screen_frame;
 	NSTextField *urlField;
+	NSTextField *statusBar;
 	WebView *browser;
 	WebFrame *wframe;
+
+	NSURL *currentURL;
+
+	int resourceCount;
+	int resourceCompletedCount;
+	int resourceFailedCount;
 }
 
-- (void)setPosition: (NSArray *)aCoords;
-- (void)setShadow: (X11Window *)input;
-- (void)loadURL: (NSString *)url;
+- (void)setPosition:(NSArray *)aCoords;
+- (void)setShadow:(X11Window *)input;
+- (void)setStatus:(NSString *)text;
+- (void)setStatusToResourceCounts;
+- (void)setTitle:(NSString *)text;
+- (void)loadURL:(NSString *)url;
 - (void)loadURLFromTextField;
-- (void)updateProgress;
 
 @end
