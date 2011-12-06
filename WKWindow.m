@@ -1,5 +1,6 @@
 #import "WKWindow.h"
 #import "X11Window.h"
+#import "NSString+HTML.h"
 
 #include <Cocoa/Cocoa.h>
 
@@ -143,6 +144,32 @@
 
 /* WebFrameLoadDelegate glue */
 
+- (void)webView:(WebView *)sender didFailProvisionalLoadWithError:(NSError *)error forFrame:(WebFrame *)frame
+{
+	NSString *message = [NSString stringWithFormat:
+		@"<html>"
+		@"<title>Failed to open page</title>"
+		@"<body style=\"font-family: helvetica neue; font-size: 10pt;\">"
+		@"<h2>:(</h2>"
+		@"<p>Could not access the URL <strong>%@</strong></p>"
+		@"<p>%@</p>"
+		@"</body></html>",
+		[[[[[frame provisionalDataSource] request] URL] absoluteString]
+			stringByEncodingHTMLEntities],
+		[[error localizedDescription] stringByEncodingHTMLEntities]];
+
+	[frame loadAlternateHTMLString:message baseURL:nil
+		forUnreachableURL:[[[frame provisionalDataSource] request] URL]];
+
+	[self setStatus:@""];
+}
+
+- (void)webView:(WebView *)sender didFailLoadWithError:(NSError *)error forFrame:(WebFrame *)frame
+{
+	return [self webView:sender didFailProvisionalLoadWithError:error
+		forFrame:frame];
+}
+
 - (void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame
 {
 	if (frame != [sender mainFrame])
@@ -204,6 +231,5 @@
 }
 
 /* WebUIDelegate glue */
-
 
 @end

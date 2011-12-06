@@ -12,6 +12,8 @@
 		01126E40147D670500C654C9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 01126E3A147D670500C654C9 /* main.m */; };
 		01126E43147D673500C654C9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01126E42147D673500C654C9 /* Cocoa.framework */; };
 		01126E48147D6CD500C654C9 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01126E47147D6CD500C654C9 /* WebKit.framework */; };
+		015A8C09148E9CDE0021409D /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 015A8C08148E9CDE0021409D /* NSString+HTML.m */; };
+		015A8C0E148E9D2A0021409D /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 015A8C0D148E9D2A0021409D /* GTMNSString+HTML.m */; };
 		01F07C9E1484730800B515E7 /* X11Window.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F07C9D1484730800B515E7 /* X11Window.m */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +37,10 @@
 		01126E3A147D670500C654C9 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		01126E42147D673500C654C9 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		01126E47147D6CD500C654C9 /* WebKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = WebKit.framework; path = ../../../System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		015A8C08148E9CDE0021409D /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
+		015A8C0B148E9CFA0021409D /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTML.h"; sourceTree = "<group>"; };
+		015A8C0C148E9D2A0021409D /* GTMNSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GTMNSString+HTML.h"; sourceTree = "<group>"; };
+		015A8C0D148E9D2A0021409D /* GTMNSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GTMNSString+HTML.m"; sourceTree = "<group>"; };
 		01F07C9C1484730800B515E7 /* X11Window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = X11Window.h; sourceTree = "<group>"; };
 		01F07C9D1484730800B515E7 /* X11Window.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = X11Window.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -56,6 +62,10 @@
 		01126E19147D66D700C654C9 = {
 			isa = PBXGroup;
 			children = (
+				015A8C0C148E9D2A0021409D /* GTMNSString+HTML.h */,
+				015A8C0D148E9D2A0021409D /* GTMNSString+HTML.m */,
+				015A8C0B148E9CFA0021409D /* NSString+HTML.h */,
+				015A8C08148E9CDE0021409D /* NSString+HTML.m */,
 				01F07C9C1484730800B515E7 /* X11Window.h */,
 				01F07C9D1484730800B515E7 /* X11Window.m */,
 				01126E38147D670500C654C9 /* WKWindow.h */,
@@ -134,6 +144,8 @@
 				01126E3F147D670500C654C9 /* WKWindow.m in Sources */,
 				01126E40147D670500C654C9 /* main.m in Sources */,
 				01F07C9E1484730800B515E7 /* X11Window.m in Sources */,
+				015A8C09148E9CDE0021409D /* NSString+HTML.m in Sources */,
+				015A8C0E148E9D2A0021409D /* GTMNSString+HTML.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
