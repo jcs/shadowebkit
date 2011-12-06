@@ -233,6 +233,7 @@
 
 /* WebUIDelegate glue */
 
+/* for javascript alert() */
 - (void)webView:(WebView *)sender runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WebFrame *)frame
 {
 	sheetResponse = -1;
@@ -256,6 +257,7 @@
 			inMode:NSModalPanelRunLoopMode dequeue:YES]];
 }
 
+/* for javascript confirm() */
 - (BOOL)webView:(WebView *)sender runJavaScriptConfirmPanelWithMessage:(NSString *)message initiatedByFrame:(WebFrame *)frame
 {
 	sheetResponse = -1;
@@ -287,6 +289,18 @@
 - (void)handleSheetResponse:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
 {
 	sheetResponse = returnCode;
+}
+
+/* for javascript window.status */
+- (void)webView:(WebView *)sender setStatusText:(NSString *)text
+{
+	[self setStatus:text];
+}
+
+/* for javascript window.status */
+- (NSString *)webViewStatusText:(WebView *)sender
+{
+	return [statusBar stringValue];
 }
 
 @end
