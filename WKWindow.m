@@ -53,13 +53,18 @@
 /* return key pressed on urlField */
 - (void)loadURLFromTextField
 {
-	[browser takeStringURLFrom:urlField];
+	[self loadURL:[urlField stringValue]];
 }
 
 - (void)loadURL: (NSString *)url
 {
-	[wframe loadRequest:
-		[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
+	NSURL *u = [NSURL URLWithString:url];
+
+	if ([[u scheme] length] == 0)
+		u = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@",
+			url]];
+
+	[wframe loadRequest:[NSURLRequest requestWithURL:u]];
 }
 
 /* called while the page is loading, and then again when it finishes */
