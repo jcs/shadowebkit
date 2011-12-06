@@ -230,6 +230,63 @@
 	[self setStatusToResourceCounts];
 }
 
+
 /* WebUIDelegate glue */
+
+- (void)webView:(WebView *)sender runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WebFrame *)frame
+{
+	sheetResponse = -1;
+
+	NSBeginInformationalAlertSheet(
+		[currentURL absoluteString],
+		nil,
+		nil,
+		nil,
+		[sender window],
+		self,
+		@selector(handleSheetResponse:returnCode:contextInfo:),
+		nil,
+		nil,
+		message);
+
+	/* block until the user responds */
+	while (sheetResponse == -1)
+		[NSApp sendEvent:[NSApp nextEventMatchingMask:NSAnyEventMask
+			untilDate:[NSDate distantFuture]
+			inMode:NSModalPanelRunLoopMode dequeue:YES]];
+}
+
+- (BOOL)webView:(WebView *)sender runJavaScriptConfirmPanelWithMessage:(NSString *)message initiatedByFrame:(WebFrame *)frame
+{
+	sheetResponse = -1;
+
+	NSBeginInformationalAlertSheet(
+		NSLocalizedString(@"JavaScript", @""),
+		NSLocalizedString(@"OK", @""),
+		NSLocalizedString(@"Cancel", @""),
+		nil,
+		[sender window],
+		self,
+		@selector(handleSheetResponse:returnCode:contextInfo:),
+		nil,
+		nil,
+		message);
+
+	/* block until the user responds */
+	while (sheetResponse == -1)
+		[NSApp sendEvent:[NSApp nextEventMatchingMask:NSAnyEventMask
+			untilDate:[NSDate distantFuture]
+			inMode:NSModalPanelRunLoopMode dequeue:YES]];
+
+	if (sheetResponse == NSAlertDefaultReturn)
+		return YES;
+	else
+		return NO;
+}
+
+- (void)handleSheetResponse:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
+{
+	sheetResponse = returnCode;
+}
 
 @end

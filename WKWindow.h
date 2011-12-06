@@ -21,6 +21,8 @@
 	int resourceCount;
 	int resourceCompletedCount;
 	int resourceFailedCount;
+
+	int sheetResponse;
 }
 
 - (void)setPosition:(NSArray *)aCoords;
@@ -30,5 +32,7 @@
 - (void)setTitle:(NSString *)text;
 - (void)loadURL:(NSString *)url;
 - (void)loadURLFromTextField;
+
+- (void)handleSheetResponse:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo;
 
 @end
