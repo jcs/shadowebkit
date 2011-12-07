@@ -2,8 +2,10 @@
 #import <WebKit/WebFrame.h>
 #import <WebKit/WebView.h>
 
-#import "WKWindow.h"
 #import "X11Window.h"
+
+/* sorry for this */
+#import <Carbon/../Frameworks/HIToolbox.framework/Headers/Events.h>
 
 @interface WKWindow : NSWindow
 {

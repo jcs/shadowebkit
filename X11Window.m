@@ -5,9 +5,6 @@
 #import <stdlib.h>
 #import <stdio.h>
 
-/* sorry for this */
-#import <Carbon/../Frameworks/HIToolbox.framework/Headers/Events.h>
-
 #import "X11Window.h"
 #import "WKWindow.h"
 

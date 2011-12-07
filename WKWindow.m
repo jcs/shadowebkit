@@ -32,6 +32,7 @@
 	[browser setUIDelegate:self];
 	[browser setResourceLoadDelegate:self];
 	[browser setFrameLoadDelegate:self];
+	wframe = [browser mainFrame];
 	[window.contentView addSubview:browser];
 
 	urlField = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 0, 0, 0)];
@@ -49,17 +50,47 @@
 	[self setStatus:@""];
 	[window.contentView addSubview:statusBar];
 
-	wframe = [browser mainFrame];
-
+	[window makeFirstResponder:browser];
 	[window makeKeyAndOrderFront:window];
 
 	return self;
+}
+
+- (void)keyDown:(NSEvent *)event {
+	int keyCode = -1;
+
+	if ([event type] != NSKeyDown)
+		return;
+
+	/* vi keys */
+	if ([event modifierFlags] == 0 && [[event characters] isEqual: @"j"])
+		keyCode = kVK_DownArrow;
+	else if ([event modifierFlags] == 0 && [[event characters] isEqual: @"k"])
+		keyCode = kVK_UpArrow;
+	else if ([event modifierFlags] == 0 && [[event characters] isEqual: @"h"])
+		keyCode = kVK_LeftArrow;
+	else if ([event modifierFlags] == 0 && [[event characters] isEqual: @"l"])
+		keyCode = kVK_RightArrow;
+
+	if (keyCode > 0)
+		[NSApp postEvent:[NSEvent
+			keyEventWithType:NSKeyDown
+			location:[NSEvent mouseLocation]
+			modifierFlags:0
+			timestamp:0
+			windowNumber:[[NSApp mainWindow] windowNumber]
+			context:nil
+			characters:@""
+			charactersIgnoringModifiers:@""
+			isARepeat:NO
+			keyCode:keyCode] atStart:NO];
 }
 
 /* return key pressed on urlField */
 - (void)loadURLFromTextField
 {
 	[self loadURL:[urlField stringValue]];
+	[window makeFirstResponder:browser];
 }
 
 - (void)loadURL:(NSString *)url
